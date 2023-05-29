@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grepolis-Tools - Made by Nícolas</title>
+    <link rel="stylesheet" href="./assets/CSS/index.css">
+</head>
+
+<body>
+
+    <h1 class="title-app">Grepolis Tools</h1>
+    <h2 class="app-creator">made by: Nícolas</h2>
+    <div class="social-links">
+        <a class='link-social' href="https://github.com/NicolasBispo">
+            <div class="image-link-container">
+                <img src="./assets/images/github-logo.png" alt="">
+            </div>
+        </a>
+        <a class='link-social' href="https://www.linkedin.com/in/nicolas-bispo/">
+            <div class="image-link-container">
+                <img src="./assets/images/linkedin-logo.png" alt="">
+            </div>
+        </a>
+    </div>
+    <div class="grepolis-login-area">
+        <div class="input-group">
+            <label for="">Usuário</label>
+            <input id='login_user' type="text">
+        </div>
+        <div class="input-group">
+            <label for="">Senha</label>
+            <input id="password_user" type="password">
+        </div>
+        <button id="loginButton" class="login-button">Login</button>
+    </div>
+    <script>
+        const botaoLogin = document.querySelector('#loginButton');
+
+        const login = document.getElementById('login_user').value;
+        const password = document.getElementById('password_user').value;
+
+        const data = {
+            login,
+            password
+        };
+
+        botaoLogin.addEventListener('click', () => {
+            fetch('http://localhost:3000/enviarLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Resposta:', result);
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        })
+    </script>
+</body>
+
+</html>
