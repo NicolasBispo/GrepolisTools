@@ -15,7 +15,7 @@ function createWindow() {
     });
 
     // Carregar o arquivo index.html
-    mainWindow.loadFile('./index.html');
+    mainWindow.loadFile('./templates/index.html');
 
 
 
