@@ -8,11 +8,6 @@ const { spawn } = require('child_process');
 //Inicialização do electron
 const electronPath = require('electron');
 
-
-//Inicialização do servidor de electron
-const electron = spawn(electronPath, ['./electron/electronService.js']);
-console.log('[ELECTRON-INTERFACE] - Servidor Electron iniciado');
-
 //Inicialização do servidor de API
 const apiServer = spawn('node', ['./api-server/server.js']);
 
@@ -30,6 +25,12 @@ apiServer.stderr.on('data', (data) => {
 apiServer.on('close', (code) => {
     console.log(`[API] Servidor fechado, código: ${code}`);
 });
+
+//Inicialização do servidor de electron
+const electron = spawn(electronPath, ['./electron/electronService.js']);
+console.log('[ELECTRON-INTERFACE] - Servidor Electron iniciado');
+
+
 
 //Capturando evento de quando fechar o electron
 electron.on('close', (code) => {
