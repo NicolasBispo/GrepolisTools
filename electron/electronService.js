@@ -1,11 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { fork } = require('child_process');
 
-
-
+let mainWindow = null;
 
 function createWindow() {
-    
+
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 800,
@@ -16,8 +15,6 @@ function createWindow() {
 
     // Carregar o arquivo index.html
     mainWindow.loadFile('./templates/index.html');
-
-
 
     // Fechar a janela principal ao clicar no botão Fechar
     mainWindow.on('closed', () => {
@@ -38,9 +35,14 @@ app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         console.log('[ELECTRON-INTERFACE] Servidor iniciado');
         createWindow();
-
     }
 });
+
+function loadFile(filePath) {
+    mainWindow.loadFile(filePath);
+}
+
+module.exports = { loadFile };
 
 
 
