@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "execute": "electron"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +14,11 @@
     "electron": "^25.0.0",
     "express": "^4.18.2",
     "puppeteer": "^20.4.0"
+  },
+  "bin": {
+    "meuPrograma": "./testes/puppeteer_test.js"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
   }
 }
