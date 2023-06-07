@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const GrepolisPuppeteer = require('./../puppeteer/GrepolisPuppeteer');
+const { loadFile } = require('./../electron/electronService');
 
 const grepolis = new GrepolisPuppeteer();
 // Configuração do middleware para processar JSON
@@ -28,9 +29,12 @@ app.post('/enviarLogin', (req, res) => {
         const loggedStatus = await grepolis.executarLogin(login, password);
         console.log('Valor de logged status: ' + loggedStatus)
         console.log('Método executarLogin concluído.');
+        const mundosEncontrados = await grepolis.encontrarMundos();
+
         if (loggedStatus) {
             res.json({
-                message: true
+                message: true,
+                mundos: mundosEncontrados
             })
         }
         else {
@@ -41,7 +45,37 @@ app.post('/enviarLogin', (req, res) => {
 
     }
     executar();
+});
+app.post('/requisicaoMundo', (req, res) => {
 
+    const mundo = req.body.mundo;
+
+    async function executar() {
+        const statusSelecionarMundo = await grepolis.selecionarMundo(mundo);
+        if (statusSelecionarMundo) {
+            res.json({
+                complete: true
+            })
+        }
+        else {
+            res.json({
+                complete: false
+            })
+        }
+
+    }
+    executar();
+
+});
+app.post('/atualizarLogin', (req, res) => {
+
+    async function executar() {
+        loadFile('/electron/templates/functions.html');
+        res.json({
+            complete: true
+        })
+    }
+    executar();
 
 
 });
