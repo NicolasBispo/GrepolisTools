@@ -66,7 +66,7 @@ body {
 }
 
 .grepolis-contents {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -109,6 +109,28 @@ body {
     color: black;
     border: solid 1px rgb(68, 0, 255);
 
+}
+.worlds-container{
+    display: none;
+}
+.worlds-container > h1{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+
+}
+.worlds-container > div{
+    display: flex;
+    flex: wrap;
+}
+.worlds-container > div > button{
+    flex-basis: 50%;
+    flex-grow: 1;
+    border: solid 1px white;
+    color: white;
+    background-color: rgb(48, 1, 4);
+    outline: solid 1px white;
+    padding: 5px;
 }
 
 @keyframes square-animation {
@@ -251,4 +273,8 @@ body {
 
 .loader-square:nth-of-type(7) {
     animation-delay: -10s;
+}
+#smallLogin{
+    display: none;
+    color: red;
 }
