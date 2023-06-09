@@ -16,9 +16,18 @@
     "puppeteer": "^20.4.0"
   },
   "bin": {
-    "meuPrograma": "./testes/puppeteer_test.js"
+    "meuPrograma": "./scripts/ColetarAldeiasBarbaras.js"
   },
   "devDependencies": {
     "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "scripts": "scripts/**",
+    "assets": [
+      "./puppeteer/**",
+      "./node_modules/puppeteer/.local-chromium/**",
+      "./node_modules/**"
+    ]
   }
+  
 }

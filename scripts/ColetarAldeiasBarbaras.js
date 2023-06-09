@@ -10,6 +10,9 @@ const yellow = "\x1b[33m";
 const blue = "\x1b[34m";
 const white = "\x1b[37m";
 
+let vistaAtual = ""
+let cidadeAtual = "";
+
 async function script() {
   const telaAtual = "";
 
@@ -17,7 +20,7 @@ async function script() {
   await grepolis.iniciarPuppeteer();
   console.log(yellow + '[GREPOLIS-PUPPETER]' + red + '-' + white + 'Iniciando navegador.' + reset);
 
-  const loggedStatus = await grepolis.executarLogin('knasher', 'vidalokas123');
+  const loggedStatus = await grepolis.executarLogin('usuario', 'senha');
 
 
   await grepolis.selecionarMundo('HIMERA');
@@ -27,7 +30,9 @@ async function script() {
   const pageReceber = grepolis.obterPage();
   await barbarian.atualizarPage(pageReceber);
   await worldNav.atualizarPage(pageReceber);
+
   await worldNav.visaoIlha();
+  vistaAtual = 'ilha';
 
 
   const cidadesExistentes = await worldNav.descobrirCidadesJogador('inicial');
