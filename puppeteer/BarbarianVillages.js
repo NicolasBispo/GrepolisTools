@@ -85,6 +85,8 @@ class BarbarianVillages extends GrepolisPuppeteer {
             }
             i = i + 1;
         }
+        const botaoNext = await page.waitForSelector('.btn_next_town.button_arrow.right');
+        botaoNext.click();
 
     }
 
